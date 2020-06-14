@@ -7,7 +7,7 @@
 # Authors: vivekv2@gmail.com
 
 from functools import lru_cache, partial
-from vlab.images.transform import mip_threeview
+from .transform import mip_threeview
 import importlib.util
 import json
 from pathlib import Path

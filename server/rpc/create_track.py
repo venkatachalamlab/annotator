@@ -2,12 +2,9 @@ from logging import Logger
 from pathlib import Path
 from typing import List
 
-from ..data.annotations import (
-    AnnotationTable,
-    WorldlineTable,
-    Worldline
-)
-from ..images import get_nearby_max
+from data import (AnnotationTable, WorldlineTable,
+                  Worldline, get_nearby_max)
+
 from ._utilities import default_args
 
 

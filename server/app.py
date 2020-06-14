@@ -29,12 +29,11 @@ from gevent.pywsgi import WSGIServer
 import numpy as np
 from skimage.measure import block_reduce
 
-from .data.io import get_slice, get_metadata
-from .data.annotations import (Annotation, Worldline, load_annotations,
-                                   save_annotations, stash_annotations)
-from .images import mip_x, mip_y, mip_z
+from data import (get_slice, get_metadata, Annotation,
+                  Worldline, load_annotations, save_annotations, 
+                  stash_annotations, mip_x, mip_y, mip_z)
 
-from . import rpc
+import rpc
 
 app = Flask(__name__)
 app.logger.setLevel("INFO")

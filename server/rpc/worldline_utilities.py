@@ -2,8 +2,8 @@ from logging import Logger
 from pathlib import Path
 from typing import List
 
-from ..data.annotations import (AnnotationTable, WorldlineTable,
-                                   cleanup_worldlines, color_worldlines)
+from data import (AnnotationTable, WorldlineTable,
+                  cleanup_worldlines, color_worldlines)
 
 
 def renumber_worldlines(dataset: Path, annotations: AnnotationTable,

@@ -2,7 +2,7 @@ from logging import Logger
 from pathlib import Path
 from typing import List
 
-from ..data.annotations import AnnotationTable, WorldlineTable, Annotation
+from data import AnnotationTable, WorldlineTable, Annotation
 
 def insert_annotation(
     dataset: Path,

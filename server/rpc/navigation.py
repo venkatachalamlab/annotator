@@ -2,10 +2,7 @@ from logging import Logger
 from pathlib import Path
 from typing import List
 
-from ..data.annotations import (
-    AnnotationTable,
-    WorldlineTable
-)
+from data import AnnotationTable, WorldlineTable
 from ._utilities import default_args
 
 

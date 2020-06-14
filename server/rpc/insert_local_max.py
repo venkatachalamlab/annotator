@@ -2,14 +2,8 @@ from logging import Logger
 from pathlib import Path
 from typing import List
 
-from vlab.data.io import get_slice_3D
-from vlab.data.annotations import (
-    Annotation,
-    Worldline,
-    AnnotationTable,
-    WorldlineTable
-)
-from vlab.images.transform import get_nearby_max
+from data import (get_slice_3D, Annotation, Worldline,
+                  AnnotationTable, WorldlineTable, get_nearby_max)
 from ._utilities import default_args
 
 

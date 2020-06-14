@@ -5,7 +5,7 @@ import re
 
 import numpy as np  # needed in eval
 
-from ..data.annotations import (AnnotationTable, WorldlineTable)
+from data import (AnnotationTable, WorldlineTable)
 from ._utilities import default_args
 
 
