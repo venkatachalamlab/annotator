@@ -3,7 +3,7 @@ Label and track C. elegans neurons.
 
 ## Installation
 
-* Note: In this instruction the path to `annotator` folder is `D:\workspace\annotator`.
+* Note: In this instruction `annotator` repository is cloned in `D:\workspace\annotator`.
 
 1. Open a command-line interface as administrator (command prompt, anaconda prompt, terminal, etc.) and navigate to `server` folder inside `annotator` directory.  
 <p align="center">
@@ -27,7 +27,8 @@ Label and track C. elegans neurons.
 `conda install -c anaconda scikit-image`  
 `conda install -c conda-forge opencv`  
 `conda install h5py`  
-`conda install pandas`
+`conda install pandas`  
+`conda install dataclasses`
 
 ## Running annotator
 
