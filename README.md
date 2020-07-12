@@ -54,6 +54,7 @@ Label and track C. elegans neurons.
 
 ## Working with annotator
 
+Before annotating your dataset it's always good to do a hard reload, to do so open your browser's console, in Chrome the keyboard shortcut is ctrl+shift+J. Right click on the reload button and select Empty Cache and Hard Reload. You can close the console now. 
 
 1. You can use the following hotkeys if you are focused on the image ( by clicking on it):  
 ```
