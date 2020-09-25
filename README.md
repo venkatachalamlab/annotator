@@ -3,6 +3,8 @@ Label and track C. elegans neurons.
 
 ## Installation
 
+* You first need to clone 'annotator'.
+
 * Note: In this instruction `annotator` repository is cloned in `D:\workspace\annotator`.
 
 1. Open a command-line interface as administrator (command prompt, anaconda prompt, terminal, etc.) and navigate to `server` folder inside `annotator` directory.  
@@ -29,8 +31,12 @@ Label and track C. elegans neurons.
 `conda install h5py`  
 `conda install pandas`  
 `conda install dataclasses`
+`conda install -c conda-forge av`
+`conda install -c conda-forge tqdm`  
 
 ## Running annotator
+
+* activate annotator environment. `activate annotator`
 
 * Note: In this instruction dataset path is:  
 `Z:\Mahdi\lambda_data\Mei Zhen\2019_10_22\hp647;hpIs675\animal_1\run_1\preprocessed`
