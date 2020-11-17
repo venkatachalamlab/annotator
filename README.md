@@ -30,8 +30,8 @@ Label and track C. elegans neurons.
 `conda install -c conda-forge opencv`  
 `conda install h5py`  
 `conda install pandas`  
-`conda install dataclasses`
-`conda install -c conda-forge av`
+`conda install dataclasses`  
+`conda install -c conda-forge av`  
 `conda install -c conda-forge tqdm`  
 
 ## Running annotator
