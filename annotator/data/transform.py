@@ -169,12 +169,17 @@ def subpixel_max_1D(A0, A1, A2) -> float:
     points (0, A0), (1, A1), and (2, A2). If A1>A0 and A1>A2, this will be a
     number in [0.5, 1.5]."""
 
-    idx = (1.5*A0 - 2*A1 + 0.5*A2)/(A0 - 2*A1 + A2)
+    b = -(1.5*A0 - 2*A1 + 0.5*A2)
+    a = (A0 - 2*A1 + A2)/2.0
 
-    if idx > 1.5 or idx < 0.5 or np.isnan(idx):
-        return 1
+    if a == 0:
+        return 1.0
     else:
-        return idx
+        idx = -b / (2 * a)
+        if idx > 1.5 or idx < 0.5 or np.isnan(idx):
+            return 1.0
+        else:
+            return idx
 
 def get_nearby_max(
     A: np.ndarray,
@@ -191,11 +196,15 @@ def get_nearby_max(
     center_idx = idx_from_coords(center, A.shape)
     radius_idx = idx_from_coords(radius, A.shape)
     blur_sigma_idx = idx_from_coords(blur_sigma, A.shape)
+    blur_sigma_idx = tuple([max(1, sigma) for sigma in blur_sigma_idx])
 
     A = blur(A, blur_sigma_idx)
 
     local_vol = get_centered_subarray(A, center_idx, radius_idx)
-    local_vol_max_ind = np.unravel_index(np.argmax(local_vol), local_vol.shape)
+
+    max_indices = np.where(local_vol==np.max(local_vol))
+    local_vol_max_ind = [int(np.rint(np.mean(i))) for i in max_indices]
+
     max_ind = (np.array(center_idx)
         - np.array(radius_idx)
         + np.array(local_vol_max_ind))
