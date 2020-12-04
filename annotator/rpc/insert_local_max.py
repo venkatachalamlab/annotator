@@ -33,7 +33,7 @@ def insert_local_max(
             _ACTIVE: Use the currently active provenance [default]
     """
 
-    aspect_ratio = window_state["shape_y"]/window_state["shape_x"]
+    aspect_ratio = window_state["shape_x"]/window_state["shape_y"]
 
     arg_list = arg.replace(" ", "").split(",")
     r_x = float(arg_list[0])
@@ -50,8 +50,8 @@ def insert_local_max(
 
     vol = get_slice_3D(dataset, window_state["t_idx"])
     center = (window_state["z"], window_state["y"], window_state["x"])
-    radius = (r_z, r_x, r_y)
-    blur_sigma = (blur_z, blur_x, blur_y)
+    radius = (r_z, r_y, r_x)
+    blur_sigma = (blur_z, blur_y, blur_x)
 
     new_coords = get_nearby_max(vol, center, radius, blur_sigma) # type: ignore
 
