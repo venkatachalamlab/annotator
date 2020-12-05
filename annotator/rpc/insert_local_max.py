@@ -7,7 +7,7 @@ from annotator.data import (get_slice_3D, Annotation, Worldline,
 from ._utilities import default_args
 
 
-@default_args("0.01, 0.05, 0.005, 0.05, False, _ACTIVE")
+@default_args("0.01, 0.08, 0.005, 0.04, False, _ACTIVE")
 def insert_local_max(
     dataset: Path,
     annotations: AnnotationTable,
