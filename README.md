@@ -35,8 +35,7 @@ Label and track C. elegans neurons.
 `annotator --dataset=."` 
 * Note: If installation is complete, you should get this message: `Starting a server on port 5000`
 
-3. Open a web browser window and enter `http://localhost:5000/`.  
-* Note: If image is not loaded but you got the server connection message, one common reason could be an incorrect dataset path.  
+3. Open a web browser and try this: `http://localhost:5000/`.  
 <p align="center">
   <img width="600" height="313" src="https://user-images.githubusercontent.com/31863323/84575872-73e39280-ad7e-11ea-8bd5-486091d5c54b.png">
 </p>
