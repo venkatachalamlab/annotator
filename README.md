@@ -3,53 +3,36 @@ Label and track C. elegans neurons.
 
 ## Installation
 
-* You first need to clone 'annotator'.
+1. Clone git repository: 
+  ```bash
+  git clone https://github.com/venkatachalamlab/annotator.git
+  ```  
+  
+2. Make sure that following Python libraries are installed (prefer conda over pip):
+    - docopt
+    - flask
+    - gevent
+    - numpy
+    - scikit-image
+    - opencv
+    - h5py
+    - pandas
+    - dataclasses
+    - av
+    
+3. Open a command line interface and nagivate to the annotator repository. Install (development mode):  
+  ```bash
+  (base) annotator> python setup.py develop
+  ```
 
-* Note: In this instruction `annotator` repository is cloned in `D:\workspace\annotator`.
-
-1. Open a command-line interface as administrator (command prompt, anaconda prompt, terminal, etc.) and navigate to `server` folder inside `annotator` directory.  
-<p align="center">
-  <img width="300" height="50" src="https://user-images.githubusercontent.com/31863323/84581831-41a05800-adb3-11ea-9770-624d2eba0530.png">
-</p>
-
-2. Check the python version.  
-<p align="center">
-  <img width="300" height="40" src="https://user-images.githubusercontent.com/31863323/84581805-0d2c9c00-adb3-11ea-9831-30cf4f2b0e2b.png">
-</p>
-
-3. Create an empty conda environment to install packages:  
-  `conda create -n annotator python=3.7.7`
-
-4. Activate the conda environment and install required packages:  
-`activate annotator`  
-`conda install docopt`  
-`conda install -c anaconda flask`  
-`conda install gevent`  
-`conda install numpy`  
-`conda install -c anaconda scikit-image`  
-`conda install -c conda-forge opencv`  
-`conda install h5py`  
-`conda install pandas`  
-`conda install dataclasses`  
-`conda install -c conda-forge av`  
-`conda install -c conda-forge tqdm`  
 
 ## Running annotator
 
-* activate annotator environment. `activate annotator`
-
-* Note: In this instruction dataset path is:  
-`Z:\Mahdi\lambda_data\Mei Zhen\2019_10_22\hp647;hpIs675\animal_1\run_1\preprocessed`
-
-1. Open a command-line interface as administrator (command prompt, anaconda prompt, terminal, etc.) and navigate to `server` folder inside `annotator` directory.  
-<p align="center">
-  <img width="300" height="50" src="https://user-images.githubusercontent.com/31863323/84581831-41a05800-adb3-11ea-9770-624d2eba0530.png">
-</p>
+1. Open a command-line interface as administrator (command prompt, anaconda prompt, terminal, etc.) and navigate to dataset folder. 
 
 
 2. Enter the following command:  
-`python app.py --dataset="Z:\\Mahdi\\lambda_data\\Mei Zhen\\2019_10_22\\hp647;hpIs675\\animal_1\\run_1\\preprocessed"`  
-* Note: In this command, for the dataset, double quotation marks and double backslashes are important.  
+`annotator --dataset=."` 
 * Note: If installation is complete, you should get this message: `Starting a server on port 5000`
 
 3. Open a web browser window and enter `http://localhost:5000/`.  
