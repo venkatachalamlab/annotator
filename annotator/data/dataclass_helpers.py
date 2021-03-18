@@ -93,7 +93,7 @@ class DataclassTableBase:
         row = self.filter(lambda x: x["id"] == id)
         return self.object_from_row(row.df)
 
-    def update(self, id: int, data):
+    def update(self, id: int, data: dict):
 
         row_idx = self.get_row_idx(id)
 

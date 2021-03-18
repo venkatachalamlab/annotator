@@ -1,3 +1,4 @@
+from dataclasses import asdict
 from logging import Logger
 from pathlib import Path
 from typing import List
@@ -40,21 +41,17 @@ def update_neir(
 		update_children=update_children
 	)
 
-	for t in t_list:
-		annot_t = annotations.get_t(t)
+	for t in range(len(t_list)):
+		annot_t = annotations.get_t(t_list[t])
 		ids = list(annot_t.df['id'])
 		for i in ids:
 			annot = asdict(annot_t.get(i))
 			w_idx = worldline_id.index(annot['worldline_id'])
-			A = Annotation(
-				t_idx=t,
-				x=results[0, w_idx, 0],
-				y=results[0, w_idx, 1],
-				z=results[0, w_idx, 2],
-				worldline_id=annot['worldline_id'],
-				parent_id=0,
-				provenance=provenance[t, w_idx]
+			annotations.update(i,
+				{'x': (results[t, w_idx, 0] + 1)/2,
+				 'y': (results[t, w_idx, 1] + 1)/2,
+				 'z':(results[t, w_idx, 2] + 1)/2,
+				 'provenance': provenance[t, w_idx]}
 			)
-			annotations.update(i, A)
 
 	return [{"type": "annotations/get_annotations"}]
