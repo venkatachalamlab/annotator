@@ -8,7 +8,7 @@ from neuronir.methods.update import update_frame
 
 from ._utilities import default_args
 
-@default_args("_now, False, False")
+@default_args("_now, True, False, False")
 def update_neir(
     dataset: Path,
     annotations: AnnotationTable,
@@ -18,8 +18,9 @@ def update_neir(
     logger: Logger
 ) -> List[dict]:
 	"""
-	arg: time, recompile_model, update_children
+	arg: time, restrict_update, recompile_model, update_children
 		time: Time to run neuronir for.
+		restrict_update: Update only around partial manual annotations.
 		recompile_model: Rerun build_model() in neuronir.
 		update_children: Also run neuronir on all child frames.
 	"""
@@ -30,13 +31,15 @@ def update_neir(
 		t_idx = window_state['t_idx']
 	else:
 		t_idx = int(arg_list[0])
-	recompile_model = arg_list[1] in ['True', 'Y', 'y']
-	update_children = arg_list[2] in ['True', 'Y', 'y']
+	restrict_update = arg_list[1] in ['True', 'Y', 'y']
+	recompile_model = arg_list[2] in ['True', 'Y', 'y']
+	update_children = arg_list[3] in ['True', 'Y', 'y']
 
 	t_list, results, worldline_id, provenance = update_frame(
 		dataset_path=Path(dataset),
 		annotation=annotations.df,
 		t_idx=t_idx,
+		restrict_update=restrict_update,
 		recompile_model=recompile_model,
 		update_children=update_children
 	)
@@ -47,10 +50,11 @@ def update_neir(
 		for i in ids:
 			annot = asdict(annot_t.get(i))
 			w_idx = worldline_id.index(annot['worldline_id'])
-			annotations.update(i,
+			annotations.update(
+				i,
 				{'x': (results[t, w_idx, 0] + 1)/2,
 				 'y': (results[t, w_idx, 1] + 1)/2,
-				 'z':(results[t, w_idx, 2] + 1)/2,
+				 'z': (results[t, w_idx, 2] + 1)/2,
 				 'provenance': provenance[t, w_idx]}
 			)
 

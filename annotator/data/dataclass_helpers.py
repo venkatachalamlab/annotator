@@ -42,7 +42,7 @@ class DataclassTableBase:
         if data is not None:
             self.df = self.df.append(data)
 
-        self.next_id = np.max(self.df.index) + 1
+        self.next_id = np.max(self.df['id']) + 1
         if np.isnan(self.next_id):
             self.next_id = 1
 
