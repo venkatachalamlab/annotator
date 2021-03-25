@@ -47,15 +47,30 @@ def update_neir(
 	for t in range(len(t_list)):
 		annot_t = annotations.get_t(t_list[t])
 		ids = list(annot_t.df['id'])
+		wlid = []
 		for i in ids:
 			annot = asdict(annot_t.get(i))
-			w_idx = worldline_id.index(annot['worldline_id'])
-			annotations.update(
-				i,
-				{'x': (results[t, w_idx, 0] + 1)/2,
-				 'y': (results[t, w_idx, 1] + 1)/2,
-				 'z': (results[t, w_idx, 2] + 1)/2,
-				 'provenance': provenance[t, w_idx]}
-			)
+			wlid.append(annot['worldline_id'])
+		for i, w in enumerate(worldline_id):
+			if w not in wlid:
+				A = Annotation(
+					t_idx=window_state["t_idx"],
+					x=(results[t, i, 0] + 1)/2,
+					y=(results[t, i, 1] + 1)/2,
+					z=(results[t, i, 2] + 1)/2,
+					worldline_id=w,
+					parent_id=0,
+					provenance=b'NEIR'
+				)
+				annotations.insert(A)
+			else:
+				idx = wlid.index(w)
+				annotations.update(
+					ids[idx],
+					{'x': (results[t, i, 0] + 1)/2,
+					 'y': (results[t, i, 1] + 1)/2,
+					 'z': (results[t, i, 2] + 1)/2,
+					 'provenance': provenance[t, i]}
+				)
 
 	return [{"type": "annotations/get_annotations"}]
