@@ -30,7 +30,7 @@ import numpy as np
 from skimage.measure import block_reduce
 
 from annotator.data import (get_slice, get_metadata, Annotation,
-                            Worldline, load_annotations, save_annotations, 
+                            Worldline, load_annotations, save_annotations,
                             stash_annotations, mip_x, mip_y, mip_z)
 
 import annotator.rpc as rpc
@@ -40,8 +40,7 @@ __version__ = '2.0.0'
 app = Flask(__name__)
 app.logger.setLevel("INFO")
 
-app.dataset = Path(
-    r"N:\Joshua\yangning_optogenetics\data\AVA_ChR2_ATR\Worm_2_20190828_2\all")
+app.dataset = Path(r"D:\data\201124")
 
 (app.annotations, app.worldlines) = load_annotations(app.dataset)
 
