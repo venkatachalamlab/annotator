@@ -8,9 +8,10 @@ from .navigation import jump_to_frame
 from .create_track import create_track
 from .change_provenance import change_provenance
 from .update_neir import update_neir
+from .overwrite_neir_checkpoint import overwrite_neir_checkpoint
 
 __all__ = [
     "delete_annotations", "insert_local_max", "insert_annotation",
     "randomly_color_worldlines", "renumber_worldlines", "jump_to_frame",
-    "create_track", "change_provenance", "update_neir"
+    "create_track", "change_provenance", "update_neir", "overwrite_neir_checkpoint"
 ]

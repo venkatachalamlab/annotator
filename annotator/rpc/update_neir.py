@@ -8,6 +8,7 @@ from neuronir.methods.update import update_frame
 
 from ._utilities import default_args
 
+
 @default_args("_now, True, False, False")
 def update_neir(
     dataset: Path,
@@ -35,7 +36,7 @@ def update_neir(
 	recompile_model = arg_list[2] in ['True', 'Y', 'y']
 	update_children = arg_list[3] in ['True', 'Y', 'y']
 
-	t_list, results, worldline_id, provenance = update_frame(
+	ret = update_frame(
 		dataset_path=Path(dataset),
 		annotation=annotations.df,
 		t_idx=t_idx,
@@ -43,6 +44,10 @@ def update_neir(
 		recompile_model=recompile_model,
 		update_children=update_children
 	)
+	if ret is None:
+		return [{"type": "annotations/get_annotations"}]
+	else:
+		t_list, results, worldline_id, provenance = ret
 
 	for t in range(len(t_list)):
 		annot_t = annotations.get_t(t_list[t])
