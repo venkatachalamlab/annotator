@@ -12,6 +12,7 @@ Usage:
 
 Options:
     -h --help                   Show this help.
+    -v --version                Show version information.
     --dataset=PATH              Location of data for labeling.
     --port=PORT                 Port to serve on. [default: 5000]
 """
@@ -20,6 +21,7 @@ from functools import lru_cache
 import io
 import os
 from pathlib import Path
+import subprocess
 import traceback
 from typing import Tuple
 
@@ -35,7 +37,8 @@ from annotator.data import (get_slice, get_metadata, Annotation,
 
 import annotator.rpc as rpc
 
-__version__ = '2.0.0'
+label = subprocess.check_output(["git", "describe", "--tags"]).strip()
+__version__ = label.decode('UTF-8')
 
 app = Flask(__name__)
 app.logger.setLevel("INFO")
@@ -384,7 +387,7 @@ def handle_rpc():
 def main():
     """CLI entry point."""
 
-    args = docopt(__doc__)
+    args = docopt(__doc__, version=f'VLab annotator {__version__}')
 
     if args["--dataset"]:
         app.dataset = Path(args["--dataset"])
