@@ -9,7 +9,7 @@ from neuronir.methods.update import update_frame
 from ._utilities import default_args
 
 
-@default_args("_now, True, False, False")
+@default_args("_now, True, False")
 def update_neir(
     dataset: Path,
     annotations: AnnotationTable,
@@ -23,7 +23,6 @@ def update_neir(
 		time: Time to run neuronir for.
 		restrict_update: Update only around partial manual annotations.
 		recompile_model: Rerun build_model() in neuronir.
-		update_children: Also run neuronir on all child frames.
 	"""
 
 	arg_list = arg.replace(" ", "").split(",")
@@ -42,7 +41,6 @@ def update_neir(
 		t_idx=t_idx,
 		restrict_update=restrict_update,
 		recompile_model=recompile_model,
-		update_children=update_children
 	)
 	if ret is None:
 		return [{"type": "annotations/get_annotations"}]

@@ -8,7 +8,7 @@ from neuronir.methods.overwrite import overwrite_checkpoint
 from ._utilities import default_args
 
 
-@default_args("None, None, False")
+@default_args("None, None")
 def overwrite_neir_checkpoint(
     dataset: Path,
     annotations: AnnotationTable,
@@ -21,15 +21,16 @@ def overwrite_neir_checkpoint(
 	arg: key, value, recompile_model
 		key: Name of item in checkpoint to overwrite.
 		value: New item to write into checkpoint.
-		recompile_model: Rerun build_model() in neuronir.
+	ex: "kn_max", "10": Updates max number of neighbor spring connections to 10.
+		"covar_threshold", "None": Removes covariance threshold for neuron spring connections.
+		"clip_grad", "0.1": Updates gradient clipping ceiling to 0.1.
 	"""
 
 	arg_list = arg.replace(" ", "").split(",")
 
 	key = str(arg_list[0])
 	value = eval(arg_list[1])
-	recompile_model = arg_list[2] in ['True', 'Y', 'y']
 
-	overwrite_checkpoint(dataset, key, value, recompile_model)
+	overwrite_checkpoint(dataset, key, value)
 
 	return [{"type": "annotations/get_annotations"}]
