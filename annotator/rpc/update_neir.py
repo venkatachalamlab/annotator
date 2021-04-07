@@ -33,7 +33,6 @@ def update_neir(
 		t_idx = int(arg_list[0])
 	restrict_update = arg_list[1] in ['True', 'Y', 'y']
 	recompile_model = arg_list[2] in ['True', 'Y', 'y']
-	update_children = arg_list[3] in ['True', 'Y', 'y']
 
 	ret = update_frame(
 		dataset_path=Path(dataset),

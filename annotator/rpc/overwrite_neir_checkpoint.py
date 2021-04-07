@@ -18,7 +18,7 @@ def overwrite_neir_checkpoint(
     logger: Logger
 ) -> List[dict]:
 	"""
-	arg: key, value, recompile_model
+	arg: key, value
 		key: Name of item in checkpoint to overwrite.
 		value: New item to write into checkpoint.
 	ex: "kn_max", "10": Updates max number of neighbor spring connections to 10.
