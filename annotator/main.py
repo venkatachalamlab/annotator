@@ -37,8 +37,10 @@ from annotator.data import (get_slice, get_metadata, Annotation,
 
 import annotator.rpc as rpc
 
-label = subprocess.check_output(["git", "describe", "--tags"]).strip()
-__version__ = label.decode('UTF-8')
+__version__ = subprocess.check_output(
+    ["git", "describe", "--tags"],
+    cwd=Path(__file__).parent.parent.absolute()
+).strip().decode('UTF-8')
 
 app = Flask(__name__)
 app.logger.setLevel("INFO")
