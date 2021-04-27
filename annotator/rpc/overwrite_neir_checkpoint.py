@@ -22,7 +22,6 @@ def overwrite_neir_checkpoint(
 		key: Name of item in checkpoint to overwrite.
 		value: New item to write into checkpoint.
 	ex: "kn_max", "10": Updates max number of neighbor spring connections to 10.
-		"covar_threshold", "None": Removes covariance threshold for neuron spring connections.
 		"clip_grad", "0.1": Updates gradient clipping ceiling to 0.1.
 	"""
 

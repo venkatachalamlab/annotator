@@ -8,6 +8,15 @@ Label and track C. elegans neurons.
   git clone https://github.com/venkatachalamlab/annotator.git
   ```  
   
+2. Checkout the current version:
+```bash
+git checkout v2.1.0
+```
+Use the following command to see what's new in the most recent tagged version:
+```bash
+git show v2.1.0
+```
+
 2. Make sure that following Python libraries are installed (prefer conda over pip):
     - docopt
     - flask
@@ -94,7 +103,7 @@ Annotating a neuron at different time points, Creating and selecting a new track
   <img width="600" height="350" src="https://user-images.githubusercontent.com/31863323/84582630-88df1680-adbc-11ea-8a85-3ca309e11e66.png">
 </p>
 
-### useful macros
+### Useful macros
 
 1. `insert_local_max`: Finds the closest maximum to the current location and labels it with the current track number. Its arguments specify the search area. You can have different keys for this macro with different arguments to use them for neurons of different size.  
 * Note: When you click on different parts of the image, you can see their coordinates in "Annotation window". Choose a averag sized neuron and take advantage of this feature to get an idea about the dimentions of a neuron. Use this information to set parameters for this macro.
@@ -106,6 +115,14 @@ Annotating a neuron at different time points, Creating and selecting a new track
 
 Example:  
 In the above picture, the current track is 1. If I click on any part of the image and then press key '2', it jumps to t=12. I then click on the center of a neuron (roughly), by pressing "1", it automatically finds the brighest point close to wheren I clicked and labels it. Now I use key "3" to jump to t=185. Since the track number is not changed, if I find the same neuron and press "1", it labels it. Now pressing key "4" creates a new track and selects it so I can jump back to t=12 by pessing key '2' and find a new neuron to label.
+
+### Interfacing with NeuronIR
+
+You can find and install NeuronIR software here: https://github.com/venkatachalamlab/NeuronIR 
+
+1. `change_provenance`( *, _now, NEIR, ANTT ): Updates all neurons in the active frame with provenance "NEIR" to "ANTT." This effectively promotes the current frame with NeuronIR results to a full verified annotation.
+2. `update_neir`( _now, True, False ): Given some partial annotations in the current frame, runs NeuronIR on the neurons connected to those annotated ones via intra-neuron regularization springs *ONLY*. This is a fast, efficient way to see how a set of partial annotation can affect the results.
+3. `overwrite_neir_checkpoint`( kn_max, 10 ): Updates a given keyword argument for NeuronIR ("kn_max") with the given value ("10") in the checkpoint.pt file. Any updates to arguments for model building/compiling will trigger a recompile and may take longer to complete. Use this to update NeuronIR parameters when using update_neir. 
 
 
 ## Saving and Loading
