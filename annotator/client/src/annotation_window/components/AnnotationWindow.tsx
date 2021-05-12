@@ -16,7 +16,8 @@ import { AnnotationPanel } from '../../annotations'
 import { saga_actions } from '../sagas'
 import WindowPanel from './WindowPanel'
 import { WorldlinesPanel } from '../../worldlines'
-import { VolumeView } from './VolumeView';
+import { VolumeView } from './VolumeView'
+import { ProvenancePanel } from '../../provenances'
 
 const XYZSliderBase = (props: {
   left: number,
@@ -172,7 +173,6 @@ const _AnnotationWindow = (props: AnnotationWindow_props_t) => {
   const t_slider_top = x_slider_top + 2 * padding_1
   const t_slider_length = props.size_x + props.size_z + padding_1
 
-  const annotation_panel_top = origin_top
   const annotation_panel_left = y_slider_left + 5 * padding_1
 
   const LUT_slider_length = t_slider_length / 3 - 2 * padding_1
@@ -184,8 +184,6 @@ const _AnnotationWindow = (props: AnnotationWindow_props_t) => {
   const window_panel_left = origin_left
   const window_panel_top = LUT_top + 5 * padding_1
 
-  const worldlines_panel_left = annotation_panel_left
-  const worldlines_panel_top = annotation_panel_top + 330
 
   let views
   if (props.view === "vol") {
@@ -374,17 +372,22 @@ const _AnnotationWindow = (props: AnnotationWindow_props_t) => {
 
       </div>
 
-      <AnnotationPanel
-        left={annotation_panel_left}
-        top={annotation_panel_top} />
-
       <WindowPanel
         left={window_panel_left}
         top={window_panel_top} />
 
-      <WorldlinesPanel
-        left={worldlines_panel_left}
-        top={worldlines_panel_top} />
+      <div style={{ position: "absolute",
+        left: annotation_panel_left,
+        width: "340px" }}>
+
+        <AnnotationPanel/>
+
+        <ProvenancePanel/>
+
+        <WorldlinesPanel/>
+
+      </div>
+
 
     </div>
   )

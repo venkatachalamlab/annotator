@@ -27,10 +27,7 @@ const mapDispatchToProps = (dispatch: AppDispatch_t) => {
 const connector = connect(mapStateToProps, mapDispatchToProps)
 type ReduxProps_t = ConnectedProps<typeof connector>
 
-type AnnotationPanel_props_t = ReduxProps_t & {
-  left: number,
-  top: number,
-}
+type AnnotationPanel_props_t = ReduxProps_t
 
 const _AnnotationPanel = (props: AnnotationPanel_props_t) => {
 
@@ -91,11 +88,10 @@ const _AnnotationPanel = (props: AnnotationPanel_props_t) => {
       variant="outlined"
       square
       style={{
-        position: "absolute",
-        left: props.left,
-        top: props.top,
+        position: "relative",
         width: "340px",
-        height: "300px"
+        height: "300px",
+        top: "20px"
       }}>
       <CardContent>
         <h3>Annotation</h3>

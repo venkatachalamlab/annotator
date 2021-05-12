@@ -13,8 +13,7 @@ const saga_action_types = {
   get_worldlines: prefix + "get_worldlines",
   update_worldline: prefix + "update_worldline",
   delete_worldline: prefix + "delete_worldline",
-  set_all_visible: prefix + "set_all_visible",
-  set_all_invisible: prefix + "set_all_invisible",
+  set_all_visible: prefix + "set_all_visible"
 }
 
 export const saga_actions = {

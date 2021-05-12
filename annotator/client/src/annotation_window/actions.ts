@@ -60,7 +60,7 @@ const threshold = (val: number, min: number, max: number): number =>
 
 const reducers = {
 
-  set_state: (state: State_t, action: PayloadAction<State_t>) =>
+  set_state: (_state: State_t, action: PayloadAction<State_t>) =>
     action.payload,
 
   set_x: (state: State_t, action: PayloadAction<number>) => {

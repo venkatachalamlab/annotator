@@ -37,7 +37,7 @@ type AnnotationsSVG_props_t = {
   fill_circles: boolean,
 }
 
-export default (props: AnnotationsSVG_props_t) => {
+const AnnotationsSVG = (props: AnnotationsSVG_props_t) => {
 
   const annotation_SVGs = Object.entries(props.annotations).map((a) =>
     AnnotationSVG({
@@ -51,3 +51,5 @@ export default (props: AnnotationsSVG_props_t) => {
 
   return <g> {annotation_SVGs} </g>
 }
+
+export default AnnotationsSVG

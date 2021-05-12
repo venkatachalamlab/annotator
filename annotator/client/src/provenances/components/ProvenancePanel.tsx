@@ -4,13 +4,13 @@ import { connect, ConnectedProps } from "react-redux"
 
 import { Card, CardContent } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
-import AddIcon from '@material-ui/icons/Add'
+import RefreshIcon from '@material-ui/icons/Refresh'
 import Button from '@material-ui/core/Button'
 
 import { State_t } from '../../app/model'
 import { AppDispatch_t } from '../../index'
 
-import { Worldline_t } from '../model'
+import { Provenance_t } from '../model'
 import * as selectors from '../selectors'
 import { actions } from '../actions'
 import { saga_actions } from '../sagas'
@@ -18,7 +18,7 @@ import { saga_actions } from '../sagas'
 import { saga_actions as annotation_window_saga_actions }
   from '../../annotation_window'
 
-import Worldline from './Worldline'
+import Provenance from './Provenance'
 
 const mapStateToProps = (state: State_t) => {
   return {
@@ -39,32 +39,17 @@ const mapDispatchToProps = (dispatch: AppDispatch_t) => {
 const connector = connect(mapStateToProps, mapDispatchToProps)
 type ReduxProps_t = ConnectedProps<typeof connector>
 
-type WorldlinesPanel_props_t = ReduxProps_t
+type ProvenancePanel_props_t = ReduxProps_t
 
-const _WorldlinesPanel = (props: WorldlinesPanel_props_t) => {
+const _ProvenancePanel = (props: ProvenancePanel_props_t) => {
 
-  const worldlines = (Object.values(props.state.worldlines)).map(
-    (x: Worldline_t) =>
-      <Worldline key={x.id}
-        worldline={x}
-        on_check={(checked) => {
-          props.actions.update_worldline_local({
-            id: x.id,
-            visible: checked
-          })
-          if (checked)
-            props.set_selected_worldline(x.id)
-        }}
-        on_rename={(new_name) =>
-          props.saga_actions.update_worldline({
-            id: x.id,
-            name: new_name
-          })}
-        on_recolor={(new_color) =>
-          props.saga_actions.update_worldline({
-            id: x.id,
-            color: new_color
-          })}
+  const provenances = (Object.values(props.state)).map(
+    (x: Provenance_t) =>
+      <Provenance key={x.id}
+        provenance={x}
+        on_check={(checked) =>
+          props.actions.set_provenance_selected([x.id, checked])
+        }
       />)
 
   return (
@@ -74,46 +59,45 @@ const _WorldlinesPanel = (props: WorldlinesPanel_props_t) => {
       square
       style={{
         position: "relative",
-        // left: props.left,
-        top: "90px",
+        top: "50px",
         width: "340px",
         height: "auto"
       }}>
       <CardContent>
-        <h3>Tracks:</h3>
+        <h3>Provenances:</h3>
 
         <Button
           color="default"
-          onClick={(event) => props.saga_actions.set_all_visible(true)}
+          onClick={(event) => props.actions.set_all_selected(true)}
           style={{
             position: "absolute",
-            left: "90px",
+            left: "140px",
             top: "28px"
           }}>
           all
         </Button>
         <Button
           color="default"
-          onClick={(event) => props.saga_actions.set_all_visible(false)}
+          onClick={(event) => props.actions.set_all_selected(false)}
           style={{
             position: "absolute",
-            left: "160px",
+            left: "190px",
             top: "28px"
           }}>
           none
         </Button>
 
-        {worldlines}
+        {provenances ? provenances : null}
 
         <IconButton
-          aria-label="add"
-          onClick={() => props.saga_actions.create_worldline()}
+          aria-label="fetch"
+          onClick={props.saga_actions.fetch_provenances}
           style={{
             position: "absolute",
-            left: "220px",
+            left: "250px",
             top: "25px"
           }}>
-          <AddIcon fontSize="small" />
+          <RefreshIcon fontSize="small" />
         </IconButton>
 
       </CardContent>
@@ -121,5 +105,5 @@ const _WorldlinesPanel = (props: WorldlinesPanel_props_t) => {
 
 }
 
-const WorldlinesPanel = connector(_WorldlinesPanel)
-export default WorldlinesPanel
+const ProvenancePanel = connector(_ProvenancePanel)
+export default ProvenancePanel

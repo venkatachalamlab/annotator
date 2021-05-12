@@ -6,6 +6,7 @@ import { annotation_id_t, Annotation_t } from './model'
 import * as app_selectors from '../app/selectors'
 import * as annotation_window_selectors from '../annotation_window/selectors'
 import * as worldlines_selectors from '../worldlines/selectors'
+import * as provenances_selectors from '../provenances/selectors'
 import { Worldline_t, WorldlinesState_t } from '../worldlines/model'
 
 export const get_state = app_selectors.get_annotations_state
@@ -32,7 +33,9 @@ export const get_annotations_list = createSelector(
 export const get_visible_annotations = createSelector(
   get_state,
   worldlines_selectors.get_visible_worldlines,
-  (s, w) => fp.pickBy((x: Annotation_t) => w.includes(x.worldline_id))(s)
+  provenances_selectors.get_visible_provenances,
+  (s, w, p) => fp.pickBy((x: Annotation_t) =>
+    w.includes(x.worldline_id) && p.includes(x.provenance))(s)
 )
 
 export const get_selected_annotation_id = createSelector(

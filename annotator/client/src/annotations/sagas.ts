@@ -5,6 +5,7 @@ import { actions } from './actions'
 import { actions as annotation_window_actions ,
   saga_actions as annotation_window_saga_actions }
   from '../annotation_window'
+import {saga_actions as provenances_saga_actions} from '../provenances'
 import * as annotation_window_selectors from '../annotation_window/selectors'
 import * as annotations_selectors from '../annotations/selectors'
 import { State_t as AppState_t } from '../app/model'
@@ -90,6 +91,8 @@ function* get_annotations(action:PayloadAction<number>) {
     yield put(
       annotation_window_actions.center_on_annotation(selected_annotation))
   }
+
+  yield put(provenances_saga_actions.fetch_provenances())
 
 }
 

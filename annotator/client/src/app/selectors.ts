@@ -9,5 +9,8 @@ export const get_annotations_state = (app_state: State_t) =>
 export const get_worldlines_state = (app_state: State_t) =>
     app_state.worldlines
 
+export const get_provenances_state = (app_state: State_t) =>
+    app_state.provenances
+
 export const get_dataset = (app_state: State_t) =>
     app_state.dataset

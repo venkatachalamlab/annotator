@@ -66,6 +66,7 @@ ReactDOM.render(
 store.dispatch(saga_actions.annotation_window.fetch_state())
 store.dispatch(saga_actions.worldlines.get_worldlines())
 store.dispatch(saga_actions.annotations.get_annotations())
+store.dispatch(saga_actions.provenances.fetch_provenances())
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
