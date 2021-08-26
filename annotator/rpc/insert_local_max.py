@@ -7,7 +7,7 @@ from annotator.data import (get_slice_3D, Annotation, Worldline,
 from ._utilities import default_args
 
 
-@default_args("0.01, 0.08, 0.005, 0.04, False, _ACTIVE")
+@default_args("0.01, 0.08, 0.005, 0.04, False, _ACTIVE, *")
 def insert_local_max(
     dataset: Path,
     annotations: AnnotationTable,
@@ -19,7 +19,7 @@ def insert_local_max(
     """
     Insert an annotation at the local max near the current point.
 
-    Args: r_x, r_z, blur_x, blur_z, new_worldline?
+    Args: r_x, r_z, blur_x, blur_z, new_worldline, provenance, channel
 
         r_x: Search radius in x, normalized units (0, 1). The radius in y is
             set by the aspect ratio.
@@ -31,6 +31,8 @@ def insert_local_max(
         new_worldline: Create a new worldline/track for this annotation.
         provenance: Anything is okay. Special values:
             _ACTIVE: Use the currently active provenance [default]
+        channel: channel to use to calculate local max:
+            *: All channles [default]
     """
 
     aspect_ratio = window_state["shape_x"]/window_state["shape_y"]
@@ -44,11 +46,12 @@ def insert_local_max(
     blur_z = float(arg_list[3])
     new_worldline = arg_list[4] == "True"
     provenance = arg_list[5]
+    channel = arg_list[6]
 
     if provenance == "_ACTIVE":
         provenance = window_state["active_provenance"]
 
-    vol = get_slice_3D(dataset, window_state["t_idx"])
+    vol = get_channel_specific_slice_3D(dataset=dataset, t=window_state["t_idx"], channel=channel)
     center = (window_state["z"], window_state["y"], window_state["x"])
     radius = (r_z, r_y, r_x)
     blur_sigma = (blur_z, blur_y, blur_x)

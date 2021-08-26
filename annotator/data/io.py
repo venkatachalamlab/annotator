@@ -118,6 +118,23 @@ def get_slice_3D(dataset: Path, t: int, method=np.max) -> np.ndarray:
 
     return method(A, axis=0)
 
+def get_channel_specific_slice_3D(dataset: Path, t: int, method=np.max, channel="*") -> np.ndarray:
+    """Return a 3D slice for a specific channel.
+    By default, this will provide a maximum intensity projection, but other
+    functions with the same type signature as numpy.max will work as well."""
+
+    A = get_slice(dataset, t)
+
+    if np.ndim(A) == 3:
+        return A
+    else:
+        if channel=="*":
+            return method(A, axis=0)
+        else:
+            return A[int(channel)]
+
+    
+
 def _get_times_default(dataset_path: Path) -> np.ndarray:
     """Return the timestamp of a given data frame."""
     h5_filename = dataset_path / "data.h5"
