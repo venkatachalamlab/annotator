@@ -2,7 +2,7 @@ from logging import Logger
 from pathlib import Path
 from typing import List
 
-from annotator.data import (get_slice_3D, Annotation, Worldline,
+from annotator.data import (get_channel_specific_slice_3D, Annotation, Worldline,
                             AnnotationTable, WorldlineTable, get_nearby_max)
 from ._utilities import default_args
 
