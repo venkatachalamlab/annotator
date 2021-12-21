@@ -35,7 +35,7 @@ def update_neir(
 	recompile_model = arg_list[2] in ['True', 'Y', 'y']
 
 	ret = update_frame(
-		dataset_path=Path(dataset),
+		dataset=Path(dataset),
 		annotation=annotations.df,
 		t_idx=t_idx,
 		restrict_update=restrict_update,
