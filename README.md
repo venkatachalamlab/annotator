@@ -128,3 +128,11 @@ You can find and install NeuronIR software here: https://github.com/venkatachala
 ## Saving and Loading
 
 On the top right on "Annotation window" there are two buttons to save annotations and load them. Annotation are save in the dataset directory. 
+
+## Developing
+
+This was created using the following tools:
+* React JavaScript Framework (create-react-app)
+* Typescript
+* Redux (state management)
+* Redux-saga (async stuff)
