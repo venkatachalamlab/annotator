@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List
 
 from annotator.data import AnnotationTable, WorldlineTable
-from neuronir.methods.overwrite import overwrite_checkpoint
+from neuronir.methods.overwrite_checkpoint import overwrite_checkpoint
 
 from ._utilities import default_args
 

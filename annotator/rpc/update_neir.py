@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List
 
 from annotator.data import AnnotationTable, WorldlineTable, Annotation
-from neuronir.methods.update import update_frame
+from neuronir.methods.update_frame import update_frame
 
 from ._utilities import default_args
 
