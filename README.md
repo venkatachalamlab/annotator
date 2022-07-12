@@ -28,6 +28,7 @@ git show v2.1.0
     - pandas
     - dataclasses
     - av
+    - Ipython  
     
 3. Open a command line interface and nagivate to the annotator repository. Install (development mode):  
   ```bash
