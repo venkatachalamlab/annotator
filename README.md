@@ -1,6 +1,8 @@
 # annotator
 Label and track C. elegans neurons.
 
+_**IMPORTANT NOTICE:**_ This repository is now stale. An up-to-date version is included in [ZephIR](https://github.com/venkatachalamlab/ZephIR) repository. Install [ZephIR](https://github.com/venkatachalamlab/ZephIR) and _annotator_ will be installed as well.
+
 ## Installation
 
 1. Clone git repository: 
